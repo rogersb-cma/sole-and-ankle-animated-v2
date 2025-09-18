@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <Text>Sale</Text>
+            <Flipper aria-hidden="true">Sale</Flipper>
+          </NavLink>
+          <NavLink href="/new">
+            <Text>New&nbsp;Releases</Text>
+            <Flipper aria-hidden="true">New&nbsp;Releases</Flipper>
+          </NavLink>
+          <NavLink href="/men">
+            <Text>Men</Text>
+            <Flipper aria-hidden="true">Men</Flipper>
+          </NavLink>
+          <NavLink href="/women">
+            <Text>Women</Text>
+            <Flipper aria-hidden="true">Women</Flipper>
+          </NavLink>
+          <NavLink href="/kids">
+            <Text>Kids</Text>
+            <Flipper aria-hidden="true">Kids</Flipper>
+          </NavLink>
+          <NavLink href="/collections">
+            <Text>Collections</Text>
+            <Flipper aria-hidden="true">Collections</Flipper>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -120,9 +138,38 @@ const NavLink = styled.a`
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  overflow: hidden;
+  position: relative;
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+`;
+
+const Text = styled.div`
+  transition: transform 150ms;
+  will-change: transform;
+  ${NavLink}:hover & {
+    transform:
+      translateY(-100%)
+      perspective(5px)
+      rotateX(2deg)
+      scale(0.9);
+  }
+`;
+
+const Flipper = styled.div`
+  will-change: transform;
+  position: absolute;
+  top: 100%;
+  font-weight: bold;
+  transition: transform 200ms;
+  transform:
+    perspective(5px)
+    rotateX(-2deg)
+    scale(0.9);
+  ${NavLink}:hover & {
+    transform: translateY(-100%);
   }
 `;
 
